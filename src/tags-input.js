@@ -399,6 +399,10 @@ tagsInput.directive('tagsInput', function($timeout, $document, $window, tagsInpu
                     shouldSelect = (key === KEYS.backspace || key === KEYS.left || key === KEYS.right) && scope.newTag.text().length === 0 && !options.enableEditingLastTag;
 
                     if (shouldAdd) {
+                        if (!scope.newTag.text() && key === KEYS.enter) {
+                            return;
+                        }
+
                         tagList.addText(scope.newTag.text());
                     }
                     else if (shouldEditLastTag) {
